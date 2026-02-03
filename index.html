@@ -27,6 +27,9 @@
       width: 200px;
       border-radius: 12px;
       pointer-events: none;
+      /* Resim yoksa çirkin durmasın diye yükseklik verelim */
+      min-height: 150px; 
+      object-fit: cover;
     }
 
     h2 {
@@ -64,14 +67,14 @@
       font-size: 22px;
       color: #ff4d6d;
       display: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- FOTO: Google'dan SS alıp yükleyeceksin -->
-    <img src="foto1.png" alt="foto">
+    <img src="foto1.png" alt="Sevgi Fotosu">
 
     <h2>Beni seviyor musun? ❤️</h2>
 
@@ -92,7 +95,8 @@
 
     noBtn.addEventListener("click", () => {
       scale += 0.3;
-      yesBtn.style.transform = scale(${scale});
+      // DÜZELTİLEN KISIM: Backtick (ters tırnak) kullanıldı
+      yesBtn.style.transform = `scale(${scale})`; 
     });
 
     yesBtn.addEventListener("click", () => {
