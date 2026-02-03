@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>❤️</title>
   <style>
     body {
@@ -11,97 +12,118 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
     }
 
     .card {
       background: white;
       width: 300px;
-      padding: 20px;
+      padding: 40px 30px; /* Fotoğraf gidince üst/alt boşluğu biraz artırdım */
       text-align: center;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
     }
 
-    img {
-      width: 200px;
-      border-radius: 12px;
-      pointer-events: none;
-      /* Resim yoksa çirkin durmasın diye yükseklik verelim */
-      min-height: 150px; 
-      object-fit: cover;
-    }
+    /* img CSS'ini sildim çünkü artık fotoğraf yok */
 
     h2 {
-      margin: 15px 0;
+      margin: 0 0 30px 0; /* Üst boşluğu sıfırladım, alt boşluğu artırdım */
+      color: #333;
+      font-size: 26px;
     }
 
     .buttons {
       display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
+      justify-content: center;
+      gap: 20px;
       position: relative;
-      z-index: 10;
+      align-items: center; /* Butonları dikeyde ortalar */
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 12px 30px;
+      font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 50px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      font-weight: bold;
+      transition: all 0.2s;
+      outline: none;
+      position: relative;
     }
 
     #yes {
       background-color: #ff4d6d;
       color: white;
+      z-index: 10;
+      flex-shrink: 0; /* Evet butonu sıkışmasın */
+    }
+
+    #yes:hover {
+      background-color: #ff3355;
     }
 
     #no {
-      background-color: #ccc;
+      background-color: #e0e0e0;
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    #no:hover {
+      background-color: #d6d6d6;
     }
 
     #message {
-      margin-top: 20px;
-      font-size: 22px;
-      color: #ff4d6d;
       display: none;
+      margin-top: 20px;
+      font-size: 24px;
+      color: #ff4d6d;
       font-weight: bold;
+      animation: popIn 0.5s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <img src="foto1.png" alt="Sevgi Fotosu">
-
-    <h2>Beni seviyor musun? ❤️</h2>
+    <h2 id="question">Beni seviyor musun? ❤️</h2>
 
     <div class="buttons">
       <button id="yes">Evet</button>
       <button id="no">Hayır</button>
     </div>
 
-    <div id="message">Zaten emindim ❤️</div>
+    <div id="message">Biliyordum! ❤️🥰</div>
   </div>
 
   <script>
     const yesBtn = document.getElementById("yes");
     const noBtn = document.getElementById("no");
-    const message = document.getElementById("message");
+    const messageDiv = document.getElementById("message");
+    const buttonsDiv = document.querySelector(".buttons");
+    const questionH2 = document.getElementById("question");
 
-    let scale = 1;
+    let currentScale = 1;
 
-    noBtn.addEventListener("click", () => {
-      scale += 0.3;
-      // DÜZELTİLEN KISIM: Backtick (ters tırnak) kullanıldı
-      yesBtn.style.transform = `scale(${scale})`; 
+    noBtn.addEventListener("click", function() {
+      currentScale += 0.5; // Büyüme hızını biraz artırdım
+      yesBtn.style.transform = `scale(${currentScale})`;
+      yesBtn.style.transformOrigin = "center";
     });
 
-    yesBtn.addEventListener("click", () => {
-      document.querySelector(".buttons").style.display = "none";
-      message.style.display = "block";
+    yesBtn.addEventListener("click", function() {
+      buttonsDiv.style.display = "none";
+      questionH2.style.display = "none";
+      messageDiv.style.display = "block";
+      document.body.style.backgroundColor = "#ffebf0";
     });
   </script>
 
