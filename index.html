@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    img {
+      width: 200px;
+      border-radius: 12px;
+    }
+
+    h2 {
+      margin: 15px 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #ccc;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #ff4d6d;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://i.imgur.com/1X5KxYF.gif" alt="minion">
+
+    <h2>Beni seviyor musun? ❤️</h2>
+
+    <div class="buttons">
+      <button id="yes">Evet</button>
+      <button id="no">Hayır</button>
+    </div>
+
+    <div id="message">Zaten emindim ❤️</div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const message = document.getElementById("message");
+
+    let scale = 1;
+
+    noBtn.addEventListener("click", () => {
+      scale += 0.3;
+      yesBtn.style.transform = scale(${scale});
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.querySelector(".buttons").style.display = "none";
+      message.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
